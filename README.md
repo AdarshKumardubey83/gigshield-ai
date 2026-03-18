@@ -27,6 +27,13 @@ During war or geopolitical tensions:
 
 - Customers order less due to higher prices
 
+👉 Result:
+- Delivery platforms receive fewer orders  
+- Gig workers get fewer delivery opportunities  
+- **Income loss occurs without any fault of the worker**
+
+This shows that not only environmental but also global economic disruptions directly affect gig worker earnings.
+
 During such events, gig workers may lose 20–30% of their weekly income. Currently, there is no system that compensates them for income loss caused by these uncontrollable disruptions.
 
 GigShield AI is an AI-powered parametric insurance platform designed to protect delivery workers from income loss caused by environmental and operational disruptions. The system automatically detects disruption events and triggers payouts without requiring manual claim filing.
