@@ -1,5 +1,13 @@
-# GigShield AI – Parametric Insurance for Food Delivery Workers
-AI-powered parametric insurance platform designed to protect food delivery workers from income loss caused by environmental and operational disruptions.
+# Govardhan Shield AI – Parametric Insurance for Food Delivery Workers
+A protective parametric insurance platform inspired by the idea of safeguarding communities during disruptions.
+
+**Built by Team: Vrindavan Tech**
+
+## Why "Govardhan Shield AI"?
+
+The name "Govardhan" symbolizes protection during adverse conditions, while "Shield" represents financial security. Together, Govardhan Shield AI reflects a system designed to protect gig workers from income loss during environmental and economic disruptions.
+
+---
 
 ## Problem Overview
 
