@@ -76,6 +76,18 @@ Pro | ₹60 | Up to ₹1500 income protection |
 
 If a worker purchases the Standard plan (₹40/week) and a disruption causes ₹900 income loss, the system automatically triggers a payout of ₹900.
 
+Parametric Triggers
+
+GigShield AI uses predefined and verified parametric triggers to detect disruptions automatically.
+
+- Rainfall Trigger: Rainfall exceeds a defined threshold (e.g., > 50 mm/day) based on IMD data  
+- Heat Trigger: Temperature exceeds safe working limits (e.g., > 45°C)  
+- Air Pollution Trigger: AQI exceeds hazardous levels (e.g., AQI > 300) using CPCB data  
+- Government Restrictions: Curfews, lockdowns, or local restrictions verified via official government notices  
+- Supply Chain Disruptions: Fuel price spikes or LPG shortages affecting restaurant operations  
+
+All triggers are validated using official government data sources to ensure reliability and prevent manipulation.
+
 ## Platform Choice
 
 The solution will be developed as a **Web Application that is enhanced into a Progressive Web App (PWA)**.
@@ -102,4 +114,43 @@ This approach allows delivery partners to easily access the platform without nee
   Works on Android, iOS, and desktop devices without separate development.
 
 This makes a PWA an ideal solution for gig workers who rely on smartphones and may have limited storage or inconsistent internet connectivity.
+
+AI/ML Integration
+
+GigShield AI integrates AI/ML to enhance accuracy and decision-making:
+
+- Dynamic Premium Calculation: AI models analyze historical weather patterns, AQI levels, and disruption frequency in each delivery zone to assign a risk score and adjust weekly premiums accordingly.  
+- Risk Prediction: Identifies high-risk zones using historical weather and disruption data.  
+- Data Fusion: Combines weather, AQI, and government alerts for better detection.  
+- Income Loss Estimation: Predicts expected vs actual earnings drop.  
+- Event Classification: Classifies disruption severity (low, medium, high).  
+- Smart Triggering: Reduces false positives using multi-source validation.  
+- Fraud Detection: Detects anomalies such as unusual claim patterns, location mismatch, or inconsistencies with official data sources.  
+- Continuous Learning: Improves predictions over time using past disruption and payout data.  
+
+Fraud Prevention Mechanisms
+
+GigShield AI ensures a fraud-resistant system using trusted external validation:
+
+- Government Data Verification: Uses official sources (IMD, CPCB, government notices)  
+- No Manual Claims: Users cannot manually request payouts  
+- Geo-Validation: Worker location is matched with affected zones  
+- Official Channel Cross-check: Curfews and restrictions verified via district authorities or police updates  
+- Anomaly Detection: Detects unusual activity patterns using AI
+
+Tech Stack
+
+- Frontend: React.js (PWA-enabled)  
+- Backend: Node.js + Express  
+- Database: MongoDB  
+- APIs: Weather API, AQI API, Maps API  
+- Payments: Razorpay
+
+Development Plan
+
+- Week 1–2 (Phase 1): Ideation, research, and system design  
+- Week 3–4 (Phase 2): Backend development and API integration  
+- Week 5–6 (Phase 3): Frontend development, PWA setup, testing, and optimization  
+
+
 
