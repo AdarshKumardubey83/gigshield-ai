@@ -5,6 +5,28 @@ AI-powered parametric insurance platform designed to protect food delivery worke
 
 India’s gig economy relies heavily on delivery partners working for platforms such as Zomato and Swiggy. These workers depend on daily deliveries for income, but external disruptions such as heavy rain, extreme heat, severe pollution, or local restrictions can prevent them from working.
 
+### 🌍 Geopolitical & Crisis-Based Disruptions
+
+In addition to environmental factors, gig workers are also affected by **geopolitical events and crisis situations** such as wars, international conflicts, and supply chain disruptions.
+
+#### ⚔️ War & Global Conflict Impact
+
+During war or geopolitical tensions:
+
+- Fuel prices increase due to global supply disruption  
+- LPG (cooking gas) shortages may occur  
+- Transportation and logistics become expensive  
+
+#### 📉 Impact on Food Delivery Ecosystem
+
+- Restaurants face higher operational costs  
+- Many restaurants:
+  - Increase food prices  
+  - Reduce order acceptance  
+  - Temporarily shut down  
+
+- Customers order less due to higher prices
+
 During such events, gig workers may lose 20–30% of their weekly income. Currently, there is no system that compensates them for income loss caused by these uncontrollable disruptions.
 
 GigShield AI is an AI-powered parametric insurance platform designed to protect delivery workers from income loss caused by environmental and operational disruptions. The system automatically detects disruption events and triggers payouts without requiring manual claim filing.
