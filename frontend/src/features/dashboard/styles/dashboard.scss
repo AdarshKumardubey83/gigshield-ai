@@ -1,0 +1,97 @@
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.dashboard-page {
+  padding: $spacing-xl $spacing-md;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: $font-family;
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    h1 {
+      color: $primary-color;
+      font-size: 2rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $spacing-lg;
+  }
+
+  &__note {
+    margin-top: $spacing-xl;
+    text-align: center;
+    font-size: 0.95rem;
+    color: color.adjust($primary-dark, $lightness: -10%);
+    background: color.adjust($primary-color, $lightness: 35%);
+    padding: $spacing-md;
+    border-radius: $border-radius;
+    font-weight: 500;
+    @include card-shadow;
+  }
+}
+
+.dash-card {
+  background: $white;
+  border-radius: $border-radius;
+  padding: $spacing-lg;
+  @include card-shadow;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  &__title {
+    font-size: 1.125rem;
+    color: $primary-dark;
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+    border-bottom: 1px solid color.adjust($text-light, $lightness: 30%);
+    padding-bottom: $spacing-sm;
+  }
+
+  &__row {
+    @include flex-between;
+    font-size: 0.95rem;
+
+    .label {
+      color: $text-light;
+      font-weight: 500;
+    }
+    
+    .value {
+      font-weight: 600;
+      color: $text-color;
+
+      &--high {
+        color: $error-color;
+      }
+      &--success {
+        color: $secondary-color;
+      }
+      &--primary {
+        color: $primary-color;
+      }
+    }
+  }
+
+  &__highlight {
+    margin-top: auto;
+    background: color.adjust($error-color, $lightness: 42%);
+    color: color.adjust($error-color, $lightness: -15%);
+    padding: $spacing-sm;
+    text-align: center;
+    border-radius: $border-radius;
+    font-weight: 600;
+    font-size: 0.9rem;
+    
+    &.success {
+      background: color.adjust($secondary-color, $lightness: 42%);
+      color: color.adjust($secondary-color, $lightness: -15%);
+    }
+  }
+}

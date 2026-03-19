@@ -1,0 +1,97 @@
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use 'auth' as *;
+
+.auth-container {
+  @include flex-center;
+  min-height: 100vh;
+  background-color: $background-color;
+  padding: $spacing-md;
+
+  &__card {
+    background: $auth-bg;
+    border-radius: $border-radius;
+    padding: $spacing-xl;
+    width: 100%;
+    max-width: $auth-card-width;
+    @include card-shadow;
+
+    h2 {
+      margin-bottom: $spacing-md;
+      color: $text-color;
+      text-align: center;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-sm;
+
+      label {
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      input {
+        padding: 0.75rem;
+        border: 1px solid color.adjust($text-light, $lightness: 30%);
+        border-radius: $border-radius;
+        outline: none;
+        transition: border-color 0.2s;
+
+        &:focus {
+          border-color: $primary-color;
+        }
+      }
+    }
+
+    button[type="submit"] {
+      @include button-base;
+      background-color: $primary-color;
+      color: $white;
+      margin-top: $spacing-sm;
+
+      &:hover {
+        background-color: $primary-dark;
+      }
+      
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__error {
+    color: $error-color;
+    font-size: 0.875rem;
+    margin-bottom: $spacing-md;
+    text-align: center;
+    background: color.adjust($error-color, $lightness: 40%);
+    padding: $spacing-sm;
+    border-radius: $border-radius;
+  }
+
+  &__footer {
+    margin-top: $spacing-md;
+    text-align: center;
+    font-size: 0.875rem;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      font-weight: 500;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
