@@ -21,6 +21,17 @@ app.use('/api/auth', authRoutes);
 // For requirements specifically asking for /api/user/profile
 app.use('/api/user', authRoutes); // authRoutes contains the /profile endpoint
 
+// --- UPTIME ROBOT HEALTH CHECKS ---
+// 1. Health check route returning JSON
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Server is healthy and running' });
+});
+
+// 2. Simple root route returning text (Useful for Uptime Robot pinging the main URL)
+app.get('/api', (req, res) => {
+  res.status(200).send('API is running securely.');
+});
+
 // --- FRONTEND INTEGRATION ---
 // 1. Serve static files from the public folder
 app.use(express.static(path.join(__dirname, '../public')));
