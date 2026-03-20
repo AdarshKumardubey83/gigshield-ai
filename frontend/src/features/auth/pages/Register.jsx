@@ -15,7 +15,7 @@ export const Register = () => {
     e.preventDefault();
     try {
       await register({ name, email, password });
-      navigate('/'); // Redirect back to login page after registration
+      navigate('/dashboard'); // Now logging in automatically and directing to dashboard
     } catch (err) {
       // Handled by useAuth
     }

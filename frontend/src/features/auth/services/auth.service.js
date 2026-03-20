@@ -1,17 +1,19 @@
+import axios from 'axios';
+
+const API_URL = 'http://localhost:3000/api/auth';
+
 export const loginUser = async (credentials) => {
-  // Using static raw data to bypass backend and allow instant access
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ user: { email: credentials.email, name: "Test User" }, token: "mock-jwt-token" });
-    }, 500);
-  });
+  const response = await axios.post(`${API_URL}/login`, credentials);
+  return {
+    user: response.data.data,
+    token: response.data.token,
+  };
 };
 
 export const registerUser = async (userData) => {
-  // Using static raw data to bypass backend and allow instant access
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ user: { email: userData.email, name: userData.name }, token: "mock-jwt-token" });
-    }, 500);
-  });
+  const response = await axios.post(`${API_URL}/register`, userData);
+  return {
+    user: response.data.data,
+    token: response.data.token,
+  };
 };

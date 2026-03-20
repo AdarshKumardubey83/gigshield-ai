@@ -20,7 +20,8 @@ export const useAuth = () => {
       context.saveUser(data.user, data.token);
       return data;
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to login');
+      const msg = err.response?.data?.message || err.response?.data?.errors?.[0]?.msg || 'Failed to login';
+      setError(msg);
       throw err;
     } finally {
       setIsLoading(false);
@@ -35,7 +36,8 @@ export const useAuth = () => {
       context.saveUser(data.user, data.token);
       return data;
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to register');
+      const msg = err.response?.data?.message || err.response?.data?.errors?.[0]?.msg || 'Failed to register';
+      setError(msg);
       throw err;
     } finally {
       setIsLoading(false);

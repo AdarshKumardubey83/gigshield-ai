@@ -13,8 +13,7 @@ export const Login = () => {
     e.preventDefault();
     try {
       await login({ email, password });
-      navigate('/dashboard'); // Redirect to dashboard heavily
-      navigate("/dashboard");
+      navigate('/dashboard');
     } catch (err) {
       // Error handling is managed by useAuth and displayed in UI
     }
