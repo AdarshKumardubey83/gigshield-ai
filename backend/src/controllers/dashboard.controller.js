@@ -4,6 +4,7 @@ export const getDashboard = async (req, res) => {
   let rain = 80;
   let wind = 0;
   let clouds = 0;
+  let zone = "Unknown";
 
   try {
     if (lat && lon) {
@@ -13,6 +14,7 @@ export const getDashboard = async (req, res) => {
       );
       const data = await response.json();
       
+      zone = data.name || "Unknown";
       temp = data.main.temp - 273; // Celsius
       rain = data.rain?.['1h'] || 0;
       wind = data.wind?.speed || 0;
@@ -73,6 +75,7 @@ export const getDashboard = async (req, res) => {
     temp,
     rain,
     wind,
-    clouds
+    clouds,
+    activeZone: zone
   });
 };

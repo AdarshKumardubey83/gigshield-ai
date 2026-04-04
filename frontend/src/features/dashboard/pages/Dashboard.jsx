@@ -79,7 +79,7 @@ export const Dashboard = () => {
           </div>
           <div className="db-hero__meta">
             <span>🛡️ Risk Level: <b>{data.riskLevel || 'LOW'}</b></span>
-            <span>📍 Active Zone: <b>{data.zone || 'DELHI'}</b></span>
+            <span>📍 Active Zone: <b>{data?.activeZone || "Fetching..."}</b></span>
             <span className="badge badge--green">🛡️ Policy Active</span>
           </div>
 
