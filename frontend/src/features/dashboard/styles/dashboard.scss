@@ -1,0 +1,672 @@
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// ─── DESIGN TOKENS ───────────────────────────────────────────────────────────
+$dash-blue:         #4f46e5;
+$dash-indigo:       #6366f1;
+$dash-violet:       #7c3aed;
+$dash-cyan:         #0891b2;
+$dash-green:        #059669;
+$dash-green-mid:    #10b981;
+$dash-green-soft:   #d1fae5;
+$dash-red:          #dc2626;
+$dash-orange:       #ea580c;
+$dash-red-soft:     #fee2e2;
+$dash-slate:        #64748b;
+$dash-navy:         #0f172a;
+$dash-card:         rgba(255, 255, 255, 0.9);
+
+// ─── GLOBAL PAGE WRAPPER ─────────────────────────────────────────────────────
+
+.db {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: $font-family;
+  overflow-x: hidden;
+
+  // Layered ambient background
+  background:
+    radial-gradient(ellipse 1000px 700px at 10% 5%,  rgba(99, 102, 241, 0.1) 0%, transparent 65%),
+    radial-gradient(ellipse 800px 600px at 90% 85%,  rgba(5, 150, 105, 0.1) 0%, transparent 65%),
+    radial-gradient(ellipse 700px 500px at 55% 45%,  rgba(124, 58, 237, 0.06) 0%, transparent 60%),
+    linear-gradient(170deg, #eef2ff 0%, #f1f5ff 35%, #f5f0ff 65%, #ecfdf5 100%);
+}
+
+// ─── LOADING STATE ───────────────────────────────────────────────────────────
+
+.db-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1rem;
+  font-family: $font-family;
+  color: $dash-slate;
+
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(99, 102, 241, 0.2);
+    border-top-color: $dash-indigo;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  p {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ─── HERO SECTION ────────────────────────────────────────────────────────────
+
+.db-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 1.5rem 30px;
+
+  // Dark premium gradient — creates visual contrast with card section
+  background: linear-gradient(
+    145deg,
+    #0f0c2e 0%,
+    #1a1060 30%,
+    #1d3a7a 65%,
+    #0d5c4e 100%
+  );
+
+  // Radial glow behind content
+  &__glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 65%);
+      top: -200px;
+      left: -100px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(5, 150, 105, 0.18) 0%, transparent 65%);
+      bottom: -150px;
+      right: -80px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  // Product badge
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    margin-bottom: 1.1rem;
+  }
+
+  // Main heading
+  &__heading {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin: 0 0 0.75rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  // Subheading
+  &__sub {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 0 1.5rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  // Status pill
+  &__status {
+    display: inline-block;
+    padding: 0.65rem 1.4rem;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border: 1.5px solid transparent;
+
+    &--alert {
+      background: rgba(220, 38, 38, 0.18);
+      color: #fca5a5;
+      border-color: rgba(220, 38, 38, 0.35);
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.15);
+    }
+
+    &--safe {
+      background: rgba(5, 150, 105, 0.18);
+      color: #6ee7b7;
+      border-color: rgba(5, 150, 105, 0.35);
+      box-shadow: 0 0 20px rgba(5, 150, 105, 0.15);
+    }
+  }
+
+  // User meta strip
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+  }
+}
+
+.live-weather {
+  margin-top: 15px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+// ─── SECTION WRAPPER ─────────────────────────────────────────────────────────
+
+.db-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 0;
+
+  &__label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $dash-indigo;
+    margin-bottom: 1rem;
+    padding-left: 0.25rem;
+  }
+}
+
+// ─── GRIDS ───────────────────────────────────────────────────────────────────
+
+.db-grid {
+  display: grid;
+  gap: 1.25rem;
+
+  // Level 1: Risk (left) + Payout hero (right)
+  &--primary {
+    grid-template-columns: 1fr 1.6fr;
+    align-items: start;
+  }
+
+  // Level 2: Equal secondary cards
+  &--secondary {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: start;
+  }
+}
+
+// Payout wrapper takes full height of sibling
+.db-payout-hero {
+  height: 100%;
+}
+
+// ─── BASE CARD (GLASSMORPHISM) ───────────────────────────────────────────────
+
+.dash-card {
+  background: #1e293b;
+  /* no blur */
+  /* no blur */
+  border-radius: 16px;
+  padding: 16px;
+  margin: 10px;
+  /* no border */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  min-height: 140px;
+  color: #ffffff;
+
+
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: 0.3s ease;
+
+
+
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
+
+
+
+
+  }
+
+  // Card title
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: $dash-indigo;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.09);
+
+    .card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      font-size: 0.95rem;
+      background: rgba(99, 102, 241, 0.08);
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+  }
+
+  p {
+    margin: 8px 0;
+  }
+
+  // Data row
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.1rem 0;
+
+    .label {
+      color: #cbd5e1;
+      /* removed weight */
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .value {
+      /* default */
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: right;
+
+      &--high    { color: $dash-red; }
+      &--success, &.active { color: #22c55e; }
+      &--primary, &.city { color: #38bdf8; font-weight: 600; }
+    }
+  }
+
+  // Bottom strip
+  &__highlight {
+    margin-top: 0.25rem;
+    padding: 0.6rem 0.9rem;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.84rem;
+    background: $dash-red-soft;
+    color: $dash-red;
+
+    &.success {
+      background: #22c55e;
+      color: #ffffff;
+      font-weight: 600;
+      border-radius: 10px;
+    }
+    &.info    { background: rgba(99,102,241,0.08); color: $dash-blue; }
+  }
+}
+
+// ─── RISK CARD — RED/ORANGE GRADIENT ─────────────────────────────────────────
+
+.dash-card--risk {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 237, 213, 0.95) 0%,
+    rgba(254, 226, 226, 0.95) 100%
+  );
+  border-color: rgba(220, 38, 38, 0.2);
+  box-shadow:
+    0 4px 20px rgba(220, 38, 38, 0.1),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+
+  &:hover {
+    box-shadow:
+      0 20px 44px rgba(220, 38, 38, 0.16),
+      0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .dash-card__title {
+    color: $dash-orange;
+    border-bottom-color: rgba(220, 38, 38, 0.12);
+    .card-icon { background: rgba(220, 38, 38, 0.08); }
+  }
+}
+
+// ─── PAYOUT CARD — GREEN HERO ────────────────────────────────────────────────
+
+.dash-card--payout {
+  height: 100%;
+  background: linear-gradient(
+    145deg,
+    #052e16 0%,
+    #064e3b 40%,
+    #065f46 100%
+  );
+  transform: scale(1.05);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  box-shadow:
+    0 8px 32px rgba(5, 150, 105, 0.25),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #fff;
+
+  &:hover {
+    box-shadow:
+      0 24px 56px rgba(5, 150, 105, 0.35),
+      0 6px 16px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+  }
+
+  .dash-card__title {
+    color: rgba(255, 255, 255, 0.6);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    .card-icon { background: rgba(255, 255, 255, 0.1); }
+  }
+
+  .dash-card__row {
+    .label { color: rgba(255, 255, 255, 0.5); }
+    .value { color: rgba(255, 255, 255, 0.85); }
+    .value--high { color: #fca5a5; }
+  }
+
+  .payout-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 0;
+  }
+
+  .payout-amount {
+    text-align: center;
+    padding: 1.25rem 0 0.75rem;
+
+    .payout-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    .payout-value {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+    }
+
+    .payout-zero {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .payout-sub {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    .payout-credit {
+      font-size: 0.85rem;
+      color: #6ee7b7;
+      margin-top: 0.4rem;
+      font-weight: 600;
+    }
+  }
+
+  .dash-card__highlight {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &.success {
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+  }
+}
+
+// ─── BADGE UTILITIES ─────────────────────────────────────────────────────────
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-right: 0.35rem;
+    background: currentColor;
+  }
+
+  &--green  { background: rgba(34,197,94,0.2); color: #22c55e; font-weight: 600; }
+  &--red    { background: rgba(239, 68, 68, 0.2); color: #ef4444; font-weight: 600; font-size: 13px; }
+  &--grey   { background: rgba(255, 255, 255, 0.15); color: #ffffff; }
+  &--blue   { background: rgba(99,102,241,0.1); color: $dash-blue; }
+}
+
+// ─── FOOTER NOTE ─────────────────────────────────────────────────────────────
+
+.db-note {
+  max-width: 1200px;
+  margin: 1.75rem auto 0;
+  padding: 0.9rem 1.5rem;
+  text-align: center;
+  font-size: 0.84rem;
+  color: $dash-indigo;
+  background: rgba(99, 102, 241, 0.07);
+  border: 1px solid rgba(99, 102, 241, 0.14);
+  border-radius: 12px;
+  font-weight: 500;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+// ─── USER PROFILE LOGO/INFO ──────────────────────────────────────────────────
+.user-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: #ffffff;
+}
+
+.user-location {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+
+// ─── HERO QUOTE ──────────────────────────────────────────────────────────────
+
+.hero-quote {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #e0f7ff;
+  opacity: 0.95;
+  line-height: 1.5;
+
+  background: linear-gradient(90deg, #00f5a0, #00d9f5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── DASHBOARD ENHANCEMENTS ────────────────────────────────────────────────────
+.dashboard-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  padding-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-container::before {
+  display: none;
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.08);
+  filter: blur(120px);
+  top: -100px;
+  left: -100px;
+}
+
+.dashboard-container::after {
+  display: none;
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 255, 150, 0.1);
+  filter: blur(120px);
+  bottom: -100px;
+  right: -100px;
+}
+
+.section-box {
+  background: #0f172a;
+  /* no backdrop */
+  border-radius: 20px;
+  padding: 25px;
+  /* no border */
+  margin: 20px auto;
+  width: 95%;
+  /* no shadow here */
+}
+
+.dash-card p,
+.dash-card span,
+.dash-card div {
+  color: #ffffff;
+  opacity: 0.95;
+}
+
+.label,
+.small-text {
+  opacity: 0.8;
+  color: #e0e0e0;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  opacity: 0.7;
+}
+
+// ─── RESPONSIVE ──────────────────────────────────────────────────────────────
+
+@media (max-width: 768px) {
+  .db-hero {
+    padding: 2.25rem 1.25rem 2rem;
+
+    &__heading { font-size: 1.9rem; }
+    &__meta    { gap: 0.6rem; font-size: 0.8rem; }
+  }
+
+  .db-section {
+    padding: 1.5rem 1rem 0;
+  }
+
+  .db-grid {
+    &--primary   { grid-template-columns: 1fr; }
+    &--secondary { grid-template-columns: 1fr; }
+  }
+
+  .db-payout-hero { height: auto; }
+
+  .db-note {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+.dashboard-wrapper {
+  max-width: 1300px;
+  margin: auto;
+}
+
+
