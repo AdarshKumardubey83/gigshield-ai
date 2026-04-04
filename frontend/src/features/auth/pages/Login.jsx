@@ -202,6 +202,14 @@ export const Login = () => {
             </button>
           </form>
         )}
+        <div style={{ marginTop: '16px', padding: '10px', backgroundColor: 'rgba(99, 102, 241, 0.05)', borderRadius: '12px', fontSize: '0.75rem', color: '#64748b', border: '1px solid rgba(99, 102, 241, 0.12)', textAlign: 'center' }}>
+          <strong style={{ color: '#4f46e5', display: 'block', marginBottom: '6px' }}>Demo Credentials</strong>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '4px', fontWeight: '600', color: '#334155' }}>
+            <span>📱 8318032813</span>
+            <span>🔐 123456</span>
+          </div>
+          <span style={{ fontSize: '0.7rem', opacity: 0.85 }}>Note: Using Firebase test credentials to bypass SMS costs.</span>
+        </div>
 
         <p className="auth-container__trust">🔒 Secured with Firebase &amp; 256-bit encryption</p>
 
